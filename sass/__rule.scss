@@ -1,0 +1,99 @@
+// Yep
+.foo {
+  display: block;
+  overflow: hidden;
+  padding: 0 1em;
+}
+// Yep
+$font-stack: 'Helvetica Neue Light', 'Helvetica', 'Arial', sans-serif;
+// Yep
+.foo {
+  background-image: url('/images/kittens.jpg');
+}
+// Yep
+.foo {
+  padding: 2em;
+  opacity: 0.5;
+}
+// Yep
+$length: 0;
+// Yep
+$value: 42;
+$length: $value * 1px;
+// Yep
+$length: 42px;
+$value: $length / 1px;
+// Yep
+.foo {
+  width: (100% / 3);
+}
+// Yep
+.foo {
+  color: red;
+}
+// Yep
+.foo {
+  color: rgba(0, 0, 0, 0.1);
+  background: hsl(300, 100%, 100%);
+}
+// Yep
+$font-stack: 'Helvetica', 'Arial', sans-serif;
+// Yep
+$shadows: 0 42px 13.37px hotpink;
+$shadows: append($shadows, $shadow, comma);
+// Yep
+$breakpoints: (
+  'small': 767px,
+  'medium': 992px,
+  'large': 1200px,
+);
+// Yep
+.foo, .foo-bar,
+.baz {
+  display: block;
+  overflow: hidden;
+  margin: 0 auto;
+}
+// Yep
+$CSS_POSITIONS: top, right, bottom, left, center;
+// Yep
+$breakpoints: (
+  'medium': (min-width: 800px),
+  'large': (min-width: 1000px),
+  'huge': (min-width: 1200px),
+);
+// Nope
+$baseline: 2em !global;
+// Yep
+@mixin dummy($a, $b, $c) {
+  // ...
+}
+@include dummy(true, 42, 'kittens');
+// Yep
+$params: true, 42, 'kittens';
+@include dummy($params...);
+// Yep
+$params: (
+  'c': 'kittens',
+  'a': true,
+  'b': 42
+);
+@include dummy($params...);
+// Yep
+@if $support-legacy {
+  // ...
+} @else {
+  // ...
+}
+// Yep
+@if not index($list, $item) {
+  // ...
+}
+// Yep
+@function dummy($condition) {
+  @if $condition {
+    @return true;
+  }
+
+  @return false;
+}

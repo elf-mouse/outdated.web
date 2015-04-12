@@ -1,0 +1,41 @@
+/**
+ * vendors
+ * utils
+ * base
+ * layout
+ * components (modules)
+ * page
+ * theme
+ */
+
+@import 'vendors/normalize';
+//@import 'vendors/bootstrap';
+//@import 'vendors/jquery-ui';
+
+@import 'utils/variables';
+@import 'utils/functions';
+@import 'utils/mixins';
+//@import 'utils/helpers';
+
+@import 'base/reset';
+@import 'base/typography';
+
+@import 'layout/navigation';
+@import 'layout/flexible';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/footer';
+//@import 'layout/sidebar';
+@import 'layout/forms';
+
+@import 'components/buttons';
+//@import 'components/carousel';
+//@import 'components/cover';
+//@import 'components/dropdown';
+
+/* for your controller/action */
+//@import 'pages/home';
+//@import 'pages/contact';
+
+@import 'themes/default';
+//@import 'themes/admin';

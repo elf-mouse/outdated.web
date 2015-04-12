@@ -1,0 +1,143 @@
+/**
+ * Flexible Box
+ *
+ * @author Elf-mousE <ifmouz@gmail.com>
+ *
+ * @usage HTML:
+ * <div class="flex-wrapper">
+ *   <header class="header">Header</header>
+ *   <article class="main">
+ *     <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+ *   </article>
+ *   <aside class="aside aside-1">Aside 1</aside>
+ *   <aside class="aside aside-2">Aside 2</aside>
+ *   <footer class="footer">Footer</footer>
+ * </div>
+ */
+
+/**
+ * flex container: flex or inline-flex
+ *
+ * - flex-flow: <'flex-direction'> || <'flex-wrap'>
+ */
+$flex-direction: row row-reverse column column-reverse;
+$flex-wrap: nowrap wrap wrap-reverse;
+$justify-content: flex-start flex-end center space-between space-around;
+$align-items: flex-start flex-end center baseline stretch;
+$align-content: flex-start flex-end center space-between space-around stretch;
+
+/**
+ * flex items
+ *
+ * - order: <integer>;
+ * - flex-grow: <number>; // default 0
+ * - flex-shrink: <number>; // default 1
+ * - flex-basis: <length> | auto; // default auto
+ * - flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+ */
+$align-self: auto flex-start flex-end center baseline stretch;
+
+@mixin flexbox() {
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;     /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Chrome */
+  display: flex;         /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin flex($values) {
+  -webkit-box-flex: $values; /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex:  $values;   /* OLD - Firefox 19- */
+  -webkit-flex:  $values;    /* Chrome */
+  -ms-flex:  $values;        /* IE 10 */
+  flex:  $values;            /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val; /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-ordinal-group: $val;    /* OLD - Firefox 19- */
+  -ms-flex-order: $val;            /* TWEENER - IE 10 */
+  -webkit-order: $val;             /* NEW - Chrome */
+  order: $val;                     /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin flexDemo() {
+  .flex-wrapper {
+    @include flexbox();
+
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .header {
+    background: tomato;
+  }
+
+  .footer {
+    background: lightgreen;
+  }
+
+  .main {
+    text-align: left;
+    background: deepskyblue;
+  }
+
+  .aside-1 {
+    background: gold;
+  }
+
+  .aside-2 {
+    background: hotpink;
+  }
+
+  /* We tell all items to be 100% width */
+  .header, .main, .nav, .aside, .footer {
+    @include flex(1 100%);
+  }
+
+  /* We rely on source order for mobile-first approach
+   * in this case:
+   * 1. header
+   * 2. nav
+   * 3. main
+   * 4. aside
+   * 5. footer
+   */
+
+  /* Medium screens */
+  @media all and (min-width: 600px) {
+    /* We tell both sidebars to share a row */
+    .aside {
+      @include flex(1 auto);
+    }
+  }
+
+  /* Large screens */
+  @media all and (min-width: 800px) {
+    /* We invert order of first sidebar and main
+     * And tell the main element to take twice as much width as the other two sidebars
+     */
+    .main {
+      @include flex(2 0);
+    }
+
+    .aside-1 {
+      @include order(1);
+    }
+    .main    {
+      @include order(2);
+    }
+    .aside-2 {
+      @include order(3);
+    }
+    .footer  {
+      @include order(4);
+    }
+  }
+}
+
+// for test
+//@include flexDemo();
